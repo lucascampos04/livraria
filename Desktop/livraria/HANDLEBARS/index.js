@@ -55,6 +55,16 @@ app.post('/add', (req, res) => {
     });
 });
 
+// deletar posts 
+app.get('/deletar/:id', (req, res) => {
+  Post.destroy({where: {'id':req.params.id}} ).then(() =>{
+    res.send("Postagem deletado com sucesso");
+  }).catch((erro)=> {
+    res.send("Esse post não existe!! " + erro);
+  });
+});
+
+
 // Middleware para lidar com erros
 app.use((err, req, res, next) => {
   console.error(err); // Imprime o erro no console
